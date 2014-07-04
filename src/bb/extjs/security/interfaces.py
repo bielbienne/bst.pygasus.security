@@ -56,4 +56,14 @@ class IAuthenticatorPlugin(Interface):
         """
 
 
-
+class IAuthenticatedPrincipalFactory(Interface):
+    
+    
+    def __init__(self, principal, request):
+        """ MultiAdapter for IPrincipal and IRequest
+        """
+    
+    def __call__(self, auth):
+        """ auth is a instance thats provide IAuthentication
+        """
+    

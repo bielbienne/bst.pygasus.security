@@ -36,6 +36,8 @@ setup(name='bb.extjs.security',
       install_requires=[
           'setuptools',
           'zope.authentication',
+          # remove this pin after a final version!
+          'zope.principalregistry == 4.0.0a2',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

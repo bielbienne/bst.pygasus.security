@@ -1,9 +1,14 @@
 from grokcore import component
 
+from zope.component import getUtility
+from zope.component import queryUtility
+from zope.component import getMultiAdapter
 from zope.interface import implementer
+
 from zope.authentication.interfaces import PrincipalLookupError
 
 from bb.extjs.security import interfaces
+from bb.extjs.core.interfaces import IApplicationContext
 
 
 @implementer(interfaces.IAuthentication)
@@ -26,21 +31,25 @@ class PluggableUtility(component.GlobalUtility):
             if pluggin is not None:
                 yield pluggin
 
-    def authenticate(request):
+    def authenticate(self, request):
         for cred in self._credentials_pluggins():
             for auth in self._authentication_pluggins():
-                principal = auth.authenticateCredentials(cred.extractCredentials())
+                credential_dict = cred.extractCredentials(request)
+                if credential_dict is None:
+                    continue
+                principal = auth.authenticateCredentials(credential_dict)
                 if principal is not None:
-                    return principal
+                    return getMultiAdapter((principal, request),
+                                           interfaces.IAuthenticatedPrincipalFactory)(self)
         return None
 
-    def unauthenticatedPrincipal():
+    def unauthenticatedPrincipal(self):
         return None
 
-    def unauthorized(id, request):
+    def unauthorized(self, id, request):
         raise Notimplemented('just not implemented at the moment')
 
-    def getPrincipal(id):
+    def getPrincipal(self, id):
         for auth in self._authentication_pluggins():
             principal = auth.principalInfo(id)
             if principal is None:
