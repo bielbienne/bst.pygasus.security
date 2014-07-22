@@ -13,7 +13,7 @@ from bb.extjs.core.interfaces import IApplicationContext
 
 @implementer(interfaces.IAuthentication)
 class PluggableUtility(component.GlobalUtility):
-    """ Default pluggable authentication utility
+    """ Default plugable authentication utility
         with similar functionality as zope framework.
     """
 
@@ -47,7 +47,7 @@ class PluggableUtility(component.GlobalUtility):
         return None
 
     def unauthorized(self, id, request):
-        raise Notimplemented('just not implemented at the moment')
+        raise NotimplementedError('just not implemented at the moment')
 
     def getPrincipal(self, id):
         for auth in self._authentication_pluggins():

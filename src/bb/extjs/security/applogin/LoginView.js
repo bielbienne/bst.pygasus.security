@@ -2,7 +2,7 @@ Ext.define('extjs.security.LoginView', {
     extend: 'Ext.container.Viewport',
 
     requires: [
-
+        'scaffolding.form.Credentials'
     ],
 
     layout: {
@@ -55,7 +55,8 @@ Ext.define('extjs.security.LoginView', {
                     border: false,
                     html: '<img src="login/fanstatic/securtiylogin/resources/login_icon.png" />',
                 }, {
-                    xtype: 'form',
+                    xtype: 'FormCredentials',
+                    title: '',
                     region: 'center',
                     frame: false,
                     bodyPadding: 15,
@@ -65,17 +66,6 @@ Ext.define('extjs.security.LoginView', {
                         labelWidth: 70,
                         margin: 20
                     },
-                    items: [
-                        {
-                            name: 'user',
-                            fieldLabel: "User"
-                        },
-                        {
-                            inputType: 'password',
-                            name: 'password',
-                            fieldLabel: "Password"
-                        }
-                    ]
                 }]
             }]
         });
