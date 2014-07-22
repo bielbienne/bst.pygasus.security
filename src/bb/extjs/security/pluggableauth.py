@@ -1,9 +1,9 @@
 from grokcore import component
 
-from zope.component import getUtility
-from zope.component import queryUtility
-from zope.component import getMultiAdapter
 from zope.interface import implementer
+from zope.component import queryUtility
+from zope.component.hooks import getSite
+from zope.component import getMultiAdapter
 
 from zope.authentication.interfaces import PrincipalLookupError
 
@@ -18,14 +18,14 @@ class PluggableUtility(component.GlobalUtility):
     """
 
     def _credentials_pluggins(self):
-        application = getUtility(IApplicationContext)
+        application = getSite()
         for name in application.credentials_pluggins:
             pluggin = queryUtility(interfaces.ICredentialsPlugin, name=name)
             if pluggin is not None:
                 yield pluggin
     
     def _authentication_pluggins(self):
-        application = getUtility(IApplicationContext)
+        application = getSite()
         for name in application.authentication_pluggins:
             pluggin = queryUtility(interfaces.IAuthenticatorPlugin, name=name)
             if pluggin is not None:

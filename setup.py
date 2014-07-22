@@ -40,7 +40,7 @@ setup(name='bb.extjs.security',
           'zope.principalregistry == 4.0.0a2',
           # -*- Extra requirements: -*-
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
+      entry_points={
+          'fanstatic.libraries': ['loginsecurity = bb.extjs.security.extjs:library'],
+      },
       )
