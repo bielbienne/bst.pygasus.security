@@ -7,15 +7,18 @@ from fanstatic import Resource
 
 
 library = Library('securtiylogin', 'applogin')
+style = Resource(library, 'resources/style.css')
 
 class LoginPageContext(ext.ApplicationContext):
     ext.name('login')
 
     title = 'Login Page'
-    application = 'bb.extjs.security.loginpage'
+    application = 'extjs.security.LoginPageApplication'
     namespace = 'extjs.security'
-    resources = Resource(library, 'login.js',
-                         depends=[ext.extjs_resources_skinless, themes['neptune']])
+    resources = Resource(library, 'application.js',
+                         depends=[ext.extjs_resources_skinless,
+                                  themes['neptune'],
+                                  style])
     
     credentials_pluggins = ()
     authentication_pluggins = ()
@@ -24,13 +27,3 @@ class LoginPageContext(ext.ApplicationContext):
 class AppClassPathMapping(ext.ClassPathMapping):
     namespace='extjs.security'
     path='fanstatic/securtiylogin'
-
-
-class ViewClassPathMapping(ext.ClassPathMapping):
-    namespace='extjs.security.view'
-    path='fanstatic/securtiylogin/view'
-
-
-class ControllerClassPathMapping(ext.ClassPathMapping):
-    namespace='extjs.security.controller'
-    path='fanstatic/securtiylogin/controller'
