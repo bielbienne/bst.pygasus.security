@@ -3,9 +3,12 @@ from js.extjs.theme import themes
 
 from zope import schema
 from zope.interface import Interface
+from zope.component import getUtility
 
 from fanstatic import Library
 from fanstatic import Resource
+
+from bb.extjs.security.interfaces import IAuthentication
 
 
 
@@ -69,6 +72,14 @@ class CredentialsHandler(ext.AbstractModelHandler):
         raise NotImplementedError('not possible...')
 
     def update(self, model):
-        model.success=True
+        
+        # Todo: put login and password in request params
+        # create credential session plugin
+        # set cookie on ajax requst (yes it works)
+        # auth from cookies
+        
+        principal = getUtility(IAuthentication).authenticate(self.request)
+        model.success = principal is not None
         return [model], 1
+
 
