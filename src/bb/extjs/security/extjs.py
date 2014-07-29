@@ -8,14 +8,20 @@ from zope.component import getUtility
 from fanstatic import Library
 from fanstatic import Resource
 
+from bb.extjs.security.plugins import FORM_LOGIN
+from bb.extjs.security.plugins import FORM_PASSWORD
 from bb.extjs.security.interfaces import IAuthentication
-
 
 
 library = Library('securtiylogin', 'applogin')
 style = Resource(library, 'resources/style.css')
 
+
 class LoginPageContext(ext.ApplicationContext):
+    """ Base class to easily create a login page in your
+        application. All you need is inherited in your project.
+    """
+    ext.baseclass()
     ext.name('login')
 
     title = 'Login Page'
@@ -26,7 +32,7 @@ class LoginPageContext(ext.ApplicationContext):
                                   themes['neptune'],
                                   style])
     
-    credentials_pluggins = ()
+    credentials_pluggins = ('request_credentials',)
     authentication_pluggins = ()
 
 
@@ -59,6 +65,10 @@ class Credentials(ext.Model):
 
 
 class CredentialsHandler(ext.AbstractModelHandler):
+    """ This handler will just push the credential to request. After that a
+        credential-plugin will create the information for the auth-plugin.
+    """
+    
     ext.adapts(Credentials, ext.IRequest)
     def get(self, model):
         """ just return a empty list
@@ -72,11 +82,8 @@ class CredentialsHandler(ext.AbstractModelHandler):
         raise NotImplementedError('not possible...')
 
     def update(self, model):
-        
-        # Todo: put login and password in request params
-        # create credential session plugin
-        # set cookie on ajax requst (yes it works)
-        # auth from cookies
+        self.request.GET.add(FORM_LOGIN, model.login)
+        self.request.GET.add(FORM_PASSWORD, model.password)
         
         principal = getUtility(IAuthentication).authenticate(self.request)
         model.success = principal is not None
