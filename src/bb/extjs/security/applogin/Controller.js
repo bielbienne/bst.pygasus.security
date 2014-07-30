@@ -57,7 +57,6 @@ Ext.define('extjs.security.Controller', {
                 window.location = camefrom;
         } else {
             this.shake();
-            debugger;
             Ext.each(this.getForm().items.items, function(item){
                 item.setValue('');
             });
