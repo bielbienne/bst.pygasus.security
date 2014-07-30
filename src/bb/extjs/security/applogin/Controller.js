@@ -50,9 +50,17 @@ Ext.define('extjs.security.Controller', {
     onStoreUpdate: function(store, operator){
         var model = operator.records[0];
         if (model.get('success')){
-            
+            var camefrom = this.camefromurl();
+            if (camefrom === false)
+                window.location = '/';
+            else
+                window.location = camefrom;
         } else {
-            
+            this.shake();
+            debugger;
+            Ext.each(this.getForm().items.items, function(item){
+                item.setValue('');
+            });
         }
     },
 
@@ -64,6 +72,17 @@ Ext.define('extjs.security.Controller', {
             return;
         }
         form.updateRecord(form.getRecord());
+    },
+
+
+    camefromurl: function(){
+        var rawparams = document.URL.split("?");
+        if (rawparams < 2)
+            return false;
+        var params = Ext.urlDecode(rawparams[rawparams.length - 1]);
+        if ('camefrom' in params)
+            return params['camefrom'];
+        return false;
     },
 
 

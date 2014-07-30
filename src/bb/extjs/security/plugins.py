@@ -1,13 +1,16 @@
 from grokcore import component
 from zope.interface import implementer
 
+from bb.extjs.session.interfaces import ISession
 from bb.extjs.security.principal import Principal
 from bb.extjs.security.interfaces import ICredentialsPlugin
 from bb.extjs.security.interfaces import IAuthenticatorPlugin
 
+
 XREMOTEUSER = 'xremoteuser'
 FORM_LOGIN = 'loginform.login'
 FORM_PASSWORD = 'loginform.password'
+SESSION_CREDENTIALS = 'bb.extjs.security.session.credentials'
 
 
 @implementer(ICredentialsPlugin)
@@ -44,17 +47,25 @@ class RequestCredentialsPlugin(component.GlobalUtility):
         """ fetch remote user in the http headers
             and create credentials with it.
         """
+        session = ISession(request)
         cred = dict(login = request.params.get(FORM_LOGIN, None),
                     password = request.params.get(FORM_PASSWORD, None))
         if None in cred.values():
-            return None
+            if SESSION_CREDENTIALS in session:
+                return session[SESSION_CREDENTIALS]
+            else:
+                return None
+        session[SESSION_CREDENTIALS] = cred
         return cred
 
     def challenge(self, request):
         return False
 
     def logout(self, request):
-        return False
+        session = ISession(request)
+        re = SESSION_CREDENTIALS in session
+        del session[SESSION_CREDENTIALS]
+        return re
 
 
 @implementer(IAuthenticatorPlugin)

@@ -38,6 +38,7 @@ setup(name='bb.extjs.security',
           'zope.authentication',
           # remove this pin after a final version!
           'zope.principalregistry == 4.0.0a2',
+          'bb.extjs.session'
           # -*- Extra requirements: -*-
       ],
       entry_points={
