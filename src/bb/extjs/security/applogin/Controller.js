@@ -26,7 +26,13 @@ Ext.define('extjs.security.Controller', {
             },
             'FormCredentials': {
                 render: this.onContentRendered
-            }
+            },
+        });
+        
+        new Ext.KeyMap(Ext.getBody(), {
+            key: Ext.EventObject.ENTER,
+            fn: this.onSubmit,
+            scope: this,
         });
     },
 
