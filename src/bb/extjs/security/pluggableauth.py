@@ -8,7 +8,10 @@ from zope.component import getMultiAdapter
 from zope.authentication.interfaces import PrincipalLookupError
 
 from bb.extjs.security import interfaces
+from bb.extjs.security.interaction import ANONYMOUSE
 from bb.extjs.core.interfaces import IApplicationContext
+
+from zope.authentication.interfaces import IAuthentication
 
 
 @implementer(interfaces.IAuthentication)
@@ -19,6 +22,8 @@ class PluggableUtility(component.GlobalUtility):
 
     def _credentials_pluggins(self):
         application = getSite()
+        if application is None:
+            return None
         for name in application.credentials_pluggins:
             pluggin = queryUtility(interfaces.ICredentialsPlugin, name=name)
             if pluggin is not None:
@@ -26,6 +31,8 @@ class PluggableUtility(component.GlobalUtility):
     
     def _authentication_pluggins(self):
         application = getSite()
+        if application is None:
+            return None
         for name in application.authentication_pluggins:
             pluggin = queryUtility(interfaces.IAuthenticatorPlugin, name=name)
             if pluggin is not None:
@@ -44,7 +51,7 @@ class PluggableUtility(component.GlobalUtility):
         return None
 
     def unauthenticatedPrincipal(self):
-        return None
+        return ANONYMOUSE
 
     def unauthorized(self, id, request):
         raise NotimplementedError('just not implemented at the moment')
@@ -55,6 +62,8 @@ class PluggableUtility(component.GlobalUtility):
             if principal is None:
                 continue
             return principal
+        if self.unauthenticatedPrincipal() is not None:
+            return self.unauthenticatedPrincipal()
         raise PrincipalLookupError(id)
 
     def logout(self, request):

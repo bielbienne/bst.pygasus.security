@@ -4,13 +4,16 @@
 
   <include package="bb.extjs.session" />
 
+  <grok:grok package="." />
+
   <include package="zope.authentication" />
   <include package="zope.security" />
   <include package="zope.security" file="meta.zcml" />
-  <include package="zope.principalregistry" />
+  <!-- do not include registry we have our own <include package="zope.principalregistry" />-->
   <include package="zope.principalregistry" file="meta.zcml" />
+  <include package="zope.securitypolicy"/>
+  <include package="zope.securitypolicy" file="meta.zcml"/>
 
-  <grok:grok package="." />
   
   <include package="." file="auth.zcml"/>
   

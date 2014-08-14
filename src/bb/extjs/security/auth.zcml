@@ -1,15 +1,29 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
-    <unauthenticatedGroup
-        id="zope.unknowngroup"
-        title="Anonymous users"
-        description="People we don't know"
+    <permission
+        id="test.permission"
+        title="BlupBlaaaaa"
+        description="Something strange"
         />
 
+    <role
+        id="test.role"
+        title="BlupBlaaaaa"
+        description="Something strange"
+        />
+
+    <grant
+        permission="test.permission"
+        role="test.role"/>
+
     <unauthenticatedPrincipal
-        id="zope.unknown"
+        id="bb_extjs.anonymouse_user"
         title="Anonymous user"
         description="A person we don't know"
         />
+
+    <grant
+        principal="bb_extjs.anonymouse_user"
+        role="test.role"/>
 
 </configure>
