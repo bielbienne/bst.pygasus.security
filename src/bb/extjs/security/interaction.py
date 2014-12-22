@@ -39,6 +39,9 @@ def set_policy_security(settings, event):
     management.setSecurityPolicy(ZopeSecurityPolicy)
 
 
+
+# not finish at all, role and rights are not supported at the moment 
+"""
 @component.subscribe(IApplicationContext, IPreRequestProcessingEvent)
 def new_interaction(context, event):
     participations = list()
@@ -55,3 +58,4 @@ def new_interaction(context, event):
 @component.subscribe(IApplicationContext, IPostRequestProcessingEvent)
 def end_interaction(context, event):
     management.endInteraction()
+"""
