@@ -11,9 +11,6 @@ Ext.define('extjs.security.Controller', {
     }, {
         ref: 'form',
         selector: 'FormCredentials'
-    }, {
-        ref: 'successField',
-        selector: 'form checkboxfield'
     }],
 
     stores: ['scaffolding.store.Credentials'],
@@ -38,9 +35,10 @@ Ext.define('extjs.security.Controller', {
 
 
     onContentRendered: function(){
-        // just hide success field because it was autocreated
-        this.getSuccessField().hide();
         var form = this.getForm();
+        // just hide success and redirect field because it was autocreated
+        form.getForm().findField('success').hide();
+        form.getForm().findField('defaultredirect').hide();
         var store = this.getScaffoldingStoreCredentialsStore();
         store.on('write', this.onStoreUpdate, this);
         store.on({
@@ -58,7 +56,7 @@ Ext.define('extjs.security.Controller', {
         if (model.get('success')){
             var camefrom = this.camefromurl();
             if (camefrom === false)
-                window.location = '/';
+                window.location = model.get('defaultredirect');
             else
                 window.location = camefrom;
         } else {

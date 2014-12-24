@@ -11,6 +11,7 @@ from fanstatic import Resource
 from bb.extjs.security.plugins import FORM_LOGIN
 from bb.extjs.security.plugins import FORM_PASSWORD
 from bb.extjs.security.interfaces import IAuthentication
+from bb.extjs.core.interfaces import DEFAULT_EXTJS_APPLICATION
 
 
 library = Library('securtiylogin', 'applogin')
@@ -50,11 +51,15 @@ class ICredentials(Interface):
 
     password = schema.Password(title = 'Password',
                                 required = True,
-                           )
+                                )
     
     success = schema.Bool(title = 'Success',
                            required = False,
                            )
+
+    defaultredirect = schema.TextLine(title = 'default redirect',
+                              required = False,
+                              )
 
 
 class Credentials(ext.Model):
@@ -62,6 +67,7 @@ class Credentials(ext.Model):
     login = ''
     password = ''
     success = False
+    defaultredirect = DEFAULT_EXTJS_APPLICATION
 
 
 class CredentialsHandler(ext.AbstractModelHandler):
