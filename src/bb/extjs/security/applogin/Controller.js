@@ -58,9 +58,9 @@ Ext.define('extjs.security.Controller', {
         if (model.get('success')){
             var camefrom = this.camefromurl();
             if (camefrom === false)
-                window.location = '/';
+                location.pathname = '';
             else
-                window.location = camefrom;
+                location.pathname = camefrom;
         } else {
             this.shake();
             Ext.each(this.getForm().items.items, function(item){
