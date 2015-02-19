@@ -22,7 +22,7 @@ Ext.define('extjs.security.Controller', {
                 click: this.onSubmit
             },
             'FormCredentials': {
-                render: this.onContentRendered
+                render: this.onContentRendered,
             },
         });
         
@@ -46,6 +46,7 @@ Ext.define('extjs.security.Controller', {
             load: function(){
                 var creds = store.getAt(0);
                 this.getForm().loadRecord(creds);
+                this.getForm().getForm().findField('login').focus();
             }
         });
     },
