@@ -1,8 +1,11 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:grok="http://namespaces.zope.org/grok"
-           i18n_domain="bb.extjs">
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="bb.extjs.security">
 
   <include package="bb.extjs.session" />
+
+  <i18n:registerTranslations directory="locales" />
 
   <grok:grok package="." />
 
@@ -14,8 +17,6 @@
   <include package="zope.securitypolicy"/>
   <include package="zope.securitypolicy" file="meta.zcml"/>
 
-  
   <include package="." file="auth.zcml"/>
-  
-  
+
 </configure>

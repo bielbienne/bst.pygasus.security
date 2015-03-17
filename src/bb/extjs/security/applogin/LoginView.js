@@ -1,3 +1,5 @@
+var _ = i18n('bb.extjs.security');
+
 Ext.define('extjs.security.LoginView', {
     extend: 'Ext.container.Viewport',
 
@@ -20,7 +22,7 @@ Ext.define('extjs.security.LoginView', {
                 resizable: false,
                 draggable: false,
                 itemId: 'loginwindow',
-                title: 'Please Login',
+                title: _('tr_lbl_please_login', 'Please Login'),
                 autoShow: true,
                 layout: 'border',
                 width: 550,
@@ -39,7 +41,7 @@ Ext.define('extjs.security.LoginView', {
                     }, {
                         xtype: 'button',
                         name: 'submit',
-                        text: 'Login',
+                        text: _('tr_lbl_login_button', 'Login'),
                         icon: 'login/fanstatic/securtiylogin/resources/key.png',
                         iconCls: 'key-icon',
                         minWidth: 140,
@@ -63,7 +65,7 @@ Ext.define('extjs.security.LoginView', {
                     defaults: {
                         xtype: 'textfield',
                         anchor: '100%',
-                        labelWidth: 70,
+                        labelWidth: 100,
                         margin: 20
                     },
                 }]

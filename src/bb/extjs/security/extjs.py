@@ -8,6 +8,7 @@ from zope.component import getUtility
 from fanstatic import Library
 from fanstatic import Resource
 
+from bb.extjs.security import _
 from bb.extjs.security.plugins import FORM_LOGIN
 from bb.extjs.security.plugins import FORM_PASSWORD
 from bb.extjs.security.interfaces import IAuthentication
@@ -45,21 +46,17 @@ class AppClassPathMapping(ext.ClassPathMapping):
 @ext.scaffolding('Credentials')
 class ICredentials(Interface):
     
-    login = schema.TextLine(title = 'Username',
-                               required = True,
-                           )
+    login = schema.TextLine(title = _('tr_lbl_username', default='Username'),
+                            required = True)
 
-    password = schema.Password(title = 'Password',
-                                required = True,
-                                )
+    password = schema.Password(title = _('tr_lbl_password', default='Password'),
+                               required = True)
     
     success = schema.Bool(title = 'Success',
-                           required = False,
-                           )
+                          required = False)
 
     defaultredirect = schema.TextLine(title = 'default redirect',
-                              required = False,
-                              )
+                                      required = False)
 
 
 class Credentials(ext.Model):
