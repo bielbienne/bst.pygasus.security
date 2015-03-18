@@ -7,28 +7,28 @@ from bb.extjs.security.interfaces import ICredentialsPlugin
 from bb.extjs.security.interfaces import IAuthenticatorPlugin
 
 
-XREMOTEUSER = 'xremoteuser'
+REMOTEUSER = 'remoteuser'
 FORM_LOGIN = 'loginform.login'
 FORM_PASSWORD = 'loginform.password'
 SESSION_CREDENTIALS = 'bb.extjs.security.session.credentials'
 
 
 @implementer(ICredentialsPlugin)
-class XRemoteCredentialsPlugin(component.GlobalUtility):
+class RemoteCredentialsPlugin(component.GlobalUtility):
     """ Fetch remote user from HTTP headers. This headers must
         be set via rewrite proxy e.g. apache. Normally this plugin
-        works with XRemoteAuthenticatorPlugin.
+        works with RemoteAuthenticatorPlugin.
     """
-    component.name('xremoteuser')
+    component.name('remoteuser')
 
     def extractCredentials(self, request):
         """ fetch remote user in the http headers
             and create credentials with it.
         """
-        remote_user = request.environ.get('X_REMOTE_USER', None)
+        remote_user = request.environ.get('REMOTE_USER', None)
         if remote_user is None:
             return None
-        return {XREMOTEUSER:remote_user}
+        return {REMOTEUSER:remote_user}
 
     def challenge(self, request):
         return False
@@ -69,14 +69,14 @@ class RequestCredentialsPlugin(component.GlobalUtility):
 
 
 @implementer(IAuthenticatorPlugin)
-class XRemoteAuthenticatorPlugin(component.GlobalUtility):
+class RemoteAuthenticatorPlugin(component.GlobalUtility):
 
-    component.name('xremoteuser')
+    component.name('remoteuser')
 
     def authenticateCredentials(self, credentials):
-        if XREMOTEUSER not in credentials:
+        if REMOTEUSER not in credentials:
             return None
-        return self.principalInfo(credentials[XREMOTEUSER])
+        return self.principalInfo(credentials[REMOTEUSER])
 
     def principalInfo(self, id):
         return Principal(id)
