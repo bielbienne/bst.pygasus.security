@@ -25,7 +25,7 @@ class XRemoteCredentialsPlugin(component.GlobalUtility):
         """ fetch remote user in the http headers
             and create credentials with it.
         """
-        remote_user = request.environ.get('HTTP_X_REMOTE_USER', None)
+        remote_user = request.environ.get('X_REMOTE_USER', None)
         if remote_user is None:
             return None
         return {XREMOTEUSER:remote_user}
