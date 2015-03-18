@@ -15,14 +15,14 @@ SESSION_CREDENTIALS = 'bb.extjs.security.session.credentials'
 
 @implementer(ICredentialsPlugin)
 class RemoteCredentialsPlugin(component.GlobalUtility):
-    """ Fetch remote user from HTTP headers. This headers must
+    """ Fetch remote user from environment variable. This variable must
         be set via rewrite proxy e.g. apache. Normally this plugin
         works with RemoteAuthenticatorPlugin.
     """
     component.name('remoteuser')
 
     def extractCredentials(self, request):
-        """ fetch remote user in the http headers
+        """ fetch remote user in the nvironment variable
             and create credentials with it.
         """
         remote_user = request.environ.get('REMOTE_USER', None)
