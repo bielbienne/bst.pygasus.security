@@ -73,10 +73,10 @@ class CredentialsHandler(ext.AbstractModelHandler):
     """
     
     ext.adapts(Credentials, ext.IRequest)
-    def get(self, model):
+    def get(self, model, batch):
         """ just return a empty list
         """
-        return [model], 1
+        return [model]
 
     def create(self, model):
         raise NotImplementedError('not possible...')
@@ -84,12 +84,12 @@ class CredentialsHandler(ext.AbstractModelHandler):
     def delete(self, model):
         raise NotImplementedError('not possible...')
 
-    def update(self, model):
+    def update(self, model, batch):
         self.request.GET.add(FORM_LOGIN, model.login)
         self.request.GET.add(FORM_PASSWORD, model.password)
         
         principal = getUtility(IAuthentication).authenticate(self.request)
         model.success = principal is not None
-        return [model], 1
+        return [model]
 
 
