@@ -76,7 +76,7 @@ class CredentialsHandler(ext.AbstractModelHandler):
     def get(self, model, batch):
         """ just return a empty list
         """
-        return [model]
+        return [model], 1
 
     def create(self, model):
         raise NotImplementedError('not possible...')
@@ -90,6 +90,6 @@ class CredentialsHandler(ext.AbstractModelHandler):
         
         principal = getUtility(IAuthentication).authenticate(self.request)
         model.success = principal is not None
-        return [model]
+        return [model], 1
 
 
