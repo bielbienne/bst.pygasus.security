@@ -6,6 +6,7 @@ from zope.interface import implementer
 from zope.security.interfaces import IParticipation
 from zope.securitypolicy.zopepolicy import ZopeSecurityPolicy
 
+from bb.extjs.security import _
 from bb.extjs.security.principal import Principal
 from bb.extjs.security.interfaces import IAuthentication
 from bb.extjs.core.interfaces import IApplicationContext
@@ -14,16 +15,15 @@ from bb.extjs.wsgi.interfaces import IApplicationSettings
 from bb.extjs.wsgi.events import IPreRequestProcessingEvent
 from bb.extjs.wsgi.events import IPostRequestProcessingEvent
 
-_ = lambda x:x # need to be translated some day
-
 
 ANONYMOUSE = Principal('bb_extjs.anonymouse_user',
                        _('Anonymouse'),
                        _('Anonymouse user that is not logged in'))
 
 AUTHENTICATED = Principal('bb_extjs.authenticated_user',
-                       _('Authenticated'),
-                       _('Authenticated user that we know'))
+                          _('Authenticated'),
+                          _('Authenticated user that we know'))
+
 
 @implementer(IParticipation)
 class Participation(object):
@@ -39,8 +39,7 @@ def set_policy_security(settings, event):
     management.setSecurityPolicy(ZopeSecurityPolicy)
 
 
-
-# not finish at all, role and rights are not supported at the moment 
+# not finish at all, role and rights are not supported at the moment
 """
 @component.subscribe(IApplicationContext, IPreRequestProcessingEvent)
 def new_interaction(context, event):

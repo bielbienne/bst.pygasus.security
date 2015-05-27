@@ -33,30 +33,30 @@ class LoginPageContext(ext.ApplicationContext):
                          depends=[ext.extjs_resources_skinless,
                                   themes['neptune'],
                                   style])
-    
+
     credentials_pluggins = ('request_credentials',)
     authentication_pluggins = ()
 
 
 class AppClassPathMapping(ext.ClassPathMapping):
-    namespace='extjs.security'
-    path='fanstatic/securtiylogin'
+    namespace = 'extjs.security'
+    path = 'fanstatic/securtiylogin'
 
 
 @ext.scaffolding('Credentials')
 class ICredentials(Interface):
-    
-    login = schema.TextLine(title = _('tr_lbl_username', default='Username'),
-                            required = True)
 
-    password = schema.Password(title = _('tr_lbl_password', default='Password'),
-                               required = True)
-    
-    success = schema.Bool(title = 'Success',
-                          required = False)
+    login = schema.TextLine(title=_('tr_lbl_username', default='Username'),
+                            required=True)
 
-    defaultredirect = schema.TextLine(title = 'default redirect',
-                                      required = False)
+    password = schema.Password(title=_('tr_lbl_password', default='Password'),
+                               required=True)
+
+    success = schema.Bool(title='Success',
+                          required=False)
+
+    defaultredirect = schema.TextLine(title='default redirect',
+                                      required=False)
 
 
 class Credentials(ext.Model):
@@ -71,8 +71,8 @@ class CredentialsHandler(ext.AbstractModelHandler):
     """ This handler will just push the credential to request. After that a
         credential-plugin will create the information for the auth-plugin.
     """
-    
     ext.adapts(Credentials, ext.IRequest)
+
     def get(self, model, batch):
         """ just return a empty list
         """
@@ -87,9 +87,7 @@ class CredentialsHandler(ext.AbstractModelHandler):
     def update(self, model, batch):
         self.request.GET.add(FORM_LOGIN, model.login)
         self.request.GET.add(FORM_PASSWORD, model.password)
-        
+
         principal = getUtility(IAuthentication).authenticate(self.request)
         model.success = principal is not None
         return [model], 1
-
-

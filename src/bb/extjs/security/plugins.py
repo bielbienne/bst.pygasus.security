@@ -28,7 +28,7 @@ class RemoteCredentialsPlugin(component.GlobalUtility):
         remote_user = request.environ.get('REMOTE_USER', None)
         if remote_user is None:
             return None
-        return {REMOTEUSER:remote_user}
+        return {REMOTEUSER: remote_user}
 
     def challenge(self, request):
         return False
@@ -48,8 +48,8 @@ class RequestCredentialsPlugin(component.GlobalUtility):
             and create credentials with it.
         """
         session = ISession(request)
-        cred = dict(login = request.params.get(FORM_LOGIN, None),
-                    password = request.params.get(FORM_PASSWORD, None))
+        cred = dict(login=request.params.get(FORM_LOGIN, None),
+                    password=request.params.get(FORM_PASSWORD, None))
         if None in cred.values():
             if SESSION_CREDENTIALS in session:
                 return session[SESSION_CREDENTIALS]

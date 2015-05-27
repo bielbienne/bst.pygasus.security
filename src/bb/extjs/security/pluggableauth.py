@@ -28,7 +28,7 @@ class PluggableUtility(component.GlobalUtility):
             pluggin = queryUtility(interfaces.ICredentialsPlugin, name=name)
             if pluggin is not None:
                 yield pluggin
-    
+
     def _authentication_pluggins(self):
         application = getSite()
         if application is None:
