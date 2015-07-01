@@ -14,7 +14,7 @@ long_description = (
     open('CHANGES.txt').read()
     + '\n')
 
-setup(name='bb.extjs.security',
+setup(name='bst.pygasus.security',
       version=version,
       description="Python Framework for ExtJs",
       long_description=long_description,
@@ -30,7 +30,7 @@ setup(name='bb.extjs.security',
       license='gpl',
       packages=find_packages('src'),
       package_dir={'': 'src'},
-      namespace_packages=['bb', 'bb.extjs'],
+      namespace_packages=['bb', 'bst.pygasus'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
@@ -39,10 +39,10 @@ setup(name='bb.extjs.security',
           # remove this pin after a final version!
           'zope.principalregistry == 4.0.0a2',
           'zope.securitypolicy == 4.0.0a1',
-          'bb.extjs.session'
+          'bst.pygasus.session'
           # -*- Extra requirements: -*-
       ],
       entry_points={
-          'fanstatic.libraries': ['loginsecurity = bb.extjs.security.extjs:library'],
+          'fanstatic.libraries': ['loginsecurity = bst.pygasus.security.extjs:library'],
       },
       )

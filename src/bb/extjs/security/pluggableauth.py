@@ -7,9 +7,9 @@ from zope.component import getMultiAdapter
 
 from zope.authentication.interfaces import PrincipalLookupError
 
-from bb.extjs.security import interfaces
-from bb.extjs.security.interaction import ANONYMOUSE
-from bb.extjs.core.interfaces import IApplicationContext
+from bst.pygasus.security import interfaces
+from bst.pygasus.security.interaction import ANONYMOUSE
+from bst.pygasus.core.interfaces import IApplicationContext
 
 from zope.authentication.interfaces import IAuthentication
 

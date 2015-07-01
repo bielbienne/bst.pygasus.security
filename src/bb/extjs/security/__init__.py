@@ -1,3 +1,3 @@
 from zope.i18nmessageid import MessageFactory
 
-_ = MessageFactory('bb.extjs.security')
+_ = MessageFactory('bst.pygasus.security')

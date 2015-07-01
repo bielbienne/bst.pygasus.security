@@ -1,4 +1,4 @@
-from bb.extjs.core import ext
+from bst.pygasus.core import ext
 from js.extjs.theme import themes
 
 from zope import schema
@@ -8,11 +8,11 @@ from zope.component import getUtility
 from fanstatic import Library
 from fanstatic import Resource
 
-from bb.extjs.security import _
-from bb.extjs.security.plugins import FORM_LOGIN
-from bb.extjs.security.plugins import FORM_PASSWORD
-from bb.extjs.security.interfaces import IAuthentication
-from bb.extjs.core.interfaces import DEFAULT_EXTJS_APPLICATION
+from bst.pygasus.security import _
+from bst.pygasus.security.plugins import FORM_LOGIN
+from bst.pygasus.security.plugins import FORM_PASSWORD
+from bst.pygasus.security.interfaces import IAuthentication
+from bst.pygasus.core.interfaces import DEFAULT_EXTJS_APPLICATION
 
 
 library = Library('securtiylogin', 'applogin')

@@ -1,16 +1,16 @@
 from grokcore import component
 from zope.interface import implementer
 
-from bb.extjs.session.interfaces import ISession
-from bb.extjs.security.principal import Principal
-from bb.extjs.security.interfaces import ICredentialsPlugin
-from bb.extjs.security.interfaces import IAuthenticatorPlugin
+from bst.pygasus.session.interfaces import ISession
+from bst.pygasus.security.principal import Principal
+from bst.pygasus.security.interfaces import ICredentialsPlugin
+from bst.pygasus.security.interfaces import IAuthenticatorPlugin
 
 
 REMOTEUSER = 'remoteuser'
 FORM_LOGIN = 'loginform.login'
 FORM_PASSWORD = 'loginform.password'
-SESSION_CREDENTIALS = 'bb.extjs.security.session.credentials'
+SESSION_CREDENTIALS = 'bst.pygasus.security.session.credentials'
 
 
 @implementer(ICredentialsPlugin)

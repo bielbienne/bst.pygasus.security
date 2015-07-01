@@ -6,21 +6,21 @@ from zope.interface import implementer
 from zope.security.interfaces import IParticipation
 from zope.securitypolicy.zopepolicy import ZopeSecurityPolicy
 
-from bb.extjs.security import _
-from bb.extjs.security.principal import Principal
-from bb.extjs.security.interfaces import IAuthentication
-from bb.extjs.core.interfaces import IApplicationContext
-from bb.extjs.wsgi.events import IApplicationStartupEvent
-from bb.extjs.wsgi.interfaces import IApplicationSettings
-from bb.extjs.wsgi.events import IPreRequestProcessingEvent
-from bb.extjs.wsgi.events import IPostRequestProcessingEvent
+from bst.pygasus.security import _
+from bst.pygasus.security.principal import Principal
+from bst.pygasus.security.interfaces import IAuthentication
+from bst.pygasus.core.interfaces import IApplicationContext
+from bst.pygasus.wsgi.events import IApplicationStartupEvent
+from bst.pygasus.wsgi.interfaces import IApplicationSettings
+from bst.pygasus.wsgi.events import IPreRequestProcessingEvent
+from bst.pygasus.wsgi.events import IPostRequestProcessingEvent
 
 
-ANONYMOUSE = Principal('bb_extjs.anonymouse_user',
+ANONYMOUSE = Principal('bst.pygasus.anonymouse_user',
                        _('Anonymouse'),
                        _('Anonymouse user that is not logged in'))
 
-AUTHENTICATED = Principal('bb_extjs.authenticated_user',
+AUTHENTICATED = Principal('bst.pygasus.authenticated_user',
                           _('Authenticated'),
                           _('Authenticated user that we know'))
 

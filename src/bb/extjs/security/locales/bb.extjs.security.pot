@@ -17,36 +17,36 @@ msgstr ""
 "Generated-By: Lingua 3.9\n"
 
 #. Default: Username
-#: ./src/bb.extjs.security/src/bb/extjs/security/extjs.py:49
+#: ./src/bst.pygasus.security/src/bst.pygasus/security/extjs.py:49
 msgid "tr_lbl_username"
 msgstr ""
 
-#: ./src/bb.extjs.security/src/bb/extjs/security/extjs.py:52
+#: ./src/bst.pygasus.security/src/bst.pygasus/security/extjs.py:52
 msgid "tr_lbl_password"
 msgstr ""
 
-#: ./src/bb.extjs.security/src/bb/extjs/security/interaction.py:21
+#: ./src/bst.pygasus.security/src/bst.pygasus/security/interaction.py:21
 msgid "Anonymouse"
 msgstr ""
 
-#: ./src/bb.extjs.security/src/bb/extjs/security/interaction.py:22
+#: ./src/bst.pygasus.security/src/bst.pygasus/security/interaction.py:22
 msgid "Anonymouse user that is not logged in"
 msgstr ""
 
-#: ./src/bb.extjs.security/src/bb/extjs/security/interaction.py:25
+#: ./src/bst.pygasus.security/src/bst.pygasus/security/interaction.py:25
 msgid "Authenticated"
 msgstr ""
 
-#: ./src/bb.extjs.security/src/bb/extjs/security/interaction.py:26
+#: ./src/bst.pygasus.security/src/bst.pygasus/security/interaction.py:26
 msgid "Authenticated user that we know"
 msgstr ""
 
 #. Default: Please Login
-#: ./src/bb.extjs.security/src/bb/extjs/security/applogin/LoginView.js:25
+#: ./src/bst.pygasus.security/src/bst.pygasus/security/applogin/LoginView.js:25
 msgid "tr_lbl_please_login"
 msgstr ""
 
 #. Default: Login
-#: ./src/bb.extjs.security/src/bb/extjs/security/applogin/LoginView.js:45
+#: ./src/bst.pygasus.security/src/bst.pygasus/security/applogin/LoginView.js:45
 msgid "tr_lbl_login_button"
 msgstr ""

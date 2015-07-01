@@ -1,4 +1,4 @@
-var _ = i18n('bb.extjs.security');
+var _ = i18n('bst.pygasus.security');
 
 Ext.define('extjs.security.LoginView', {
     extend: 'Ext.container.Viewport',

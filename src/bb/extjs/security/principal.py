@@ -2,8 +2,8 @@ from grokcore import component
 from zope.interface import implementer
 from zope.security.interfaces import IPrincipal
 
-from bb.extjs.wsgi.interfaces import IRequest
-from bb.extjs.security.interfaces import IAuthenticatedPrincipalFactory
+from bst.pygasus.wsgi.interfaces import IRequest
+from bst.pygasus.security.interfaces import IAuthenticatedPrincipalFactory
 
 
 @implementer(IPrincipal)
